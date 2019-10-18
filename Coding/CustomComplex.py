@@ -8,44 +8,49 @@ Uses Python 3.8.0
 """
 
 
+from math import sqrt
+
+
 class Complex(object):
     """A custom, hand-written complex number type."""
 
-    def __init__(self, real, imaginary):
+    def __init__(self, real, imag):
         """Sets initial values for the number, real and imaginary."""
-        pass
+        self.real = real
+        self.imag = imag
 
     def __add__(self, no):
         """Provides support for the addition(+) operator."""
-        pass
+        return Complex(self.real + no.real, self.imag + no.imag)
 
     def __sub__(self, no):
         """Provides support for the subtraction(-) operator."""
-        pass
+        return Complex(self.real - no.real, self.imag - no.imag)
 
     def __mul__(self, no):
         """Provides support for the multiplication(*) operator."""
-        pass
+        x, y = self.real, self.imag
+        u, v = no.real, no.imag
+        newReal = (x * u) - (y * v)
+        newImag = (x * v) + (y * u)
+        return Complex(newReal, newImag)
 
     def __truediv__(self, no):
         """Provides support for the division(/) operator."""
-        pass
+        x, y = self.real, self.imag
+        u, v = no.real, no.imag
+        newReal = (x * u) + (y * v)
+        newImag = (y * u) - (x * v)
+        newReal /= u ** 2 + v ** 2
+        newImag /= u ** 2 + v ** 2
+        return Complex(newReal, newImag)
 
     def mod(self):
         """Returns the modulous of the number."""
-        pass
+        newReal = sqrt(self.real ** 2 + self.imag ** 2)
+        return Complex(newReal, 0.0)
 
     def __str__(self):
         """Provides a human-readable representation of the number."""
-        if self.imaginary == 0:
-            result = "%.2f+0.00i" % (self.real)
-        elif self.real == 0:
-            if self.imaginary >= 0:
-                result = "0.00+%.2fi" % (self.imaginary)
-            else:
-                result = "0.00-%.2fi" % (abs(self.imaginary))
-        elif self.imaginary > 0:
-            result = "%.2f+%.2fi" % (self.real, self.imaginary)
-        else:
-            result = "%.2f-%.2fi" % (self.real, abs(self.imaginary))
-        return result
+        sign = "+" if self.imag >= 0.0 else ""
+        return "%.2f%s%.2fi" % (self.real, sign, self.imag)
