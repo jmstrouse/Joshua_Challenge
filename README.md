@@ -15,7 +15,7 @@ Create a set of Ansible playbooks to:
 - Install, configure and start a Nginx server.
 - Verify server configuration.
 
-## Coding
+## Coding **(COMPLETE)**
 
 ### The Problem
 
