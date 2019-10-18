@@ -109,7 +109,13 @@ def ManualTest():
     complex numbers, one per line. Do a full set of calculations and
     print results.
     """
-    pass
+    print("Input values for X, seperated by a space.")
+    c = map(float, input().split())
+    print("Input values for Y, seperated by a space.")
+    d = map(float, input().split())
+    x = Complex(*c)
+    y = Complex(*d)
+    print(*map(str, [x+y, x-y, x*y, x/y, x.mod(), y.mod()]), sep='\n')
 
 
 if __name__ == "__main__":
