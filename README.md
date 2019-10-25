@@ -1,6 +1,6 @@
 # Joshua_Challenge
 
-## Infrastructure
+## Infrastructure **(Partial)**
 
 ### The Problem
 
@@ -14,6 +14,16 @@ Create a set of Ansible playbooks to:
 - Create and place the static content.
 - Install, configure and start a Nginx server.
 - Verify server configuration.
+
+### Improvements
+
+- Add configuration of server to properly implement HTTPS. Add test for HTTPS
+    handling.
+- Add configuration for redirection from HTTP to HTTPS. Add testing for
+    redirection.
+- Add configuration of passwords, ports, etc to secure server. Add testing of
+    the configuration.
+
 
 ## Coding **(COMPLETE)**
 
@@ -57,3 +67,9 @@ string representation function for output purposes.
     - division
     - modulus
 - Add string representation support.
+
+### Improvements
+
+- Add support for comparison operators, with tests.
+- Add code coverage analysis.
+- Improve robustness of the error handling.
