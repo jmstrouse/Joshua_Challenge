@@ -1,0 +1,12 @@
+---
+- hosts: security_group_webserver
+  vars:  
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: MicroLinuxNodeKeys.pem
+  
+  tasks:
+  - name: copy static index page
+    template:
+      src: index.html.orig
+      dest: /opt/bitnami/nginx/html/index.html
+

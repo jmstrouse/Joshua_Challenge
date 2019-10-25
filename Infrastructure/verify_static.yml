@@ -1,0 +1,20 @@
+---
+- hosts: security_group_webserver
+  vars:  
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: MicroLinuxNodeKeys.pem
+ 
+  tasks:
+  - name: get the static web page as served by webserver
+    get_url:
+      url: http://{{ hostvars[ansible_host]["ec2_dns_name"] }}/
+      dest: /tmp/index.html.{{ ansible_host }}
+    register: remotefile
+
+  - name: get the SHA1 checksum of the local original and compare
+    stat:
+      path: "{{ playbook_dir }}/index.html.orig"
+    delegate_to: localhost
+    register: originalfile
+    failed_when: remotefile.checksum_dest != originalfile.stat.checksum
+
